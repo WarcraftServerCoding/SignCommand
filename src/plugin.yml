@@ -1,0 +1,10 @@
+name: SignCommand
+main: com.warcraftserver.SignCommand
+version: 1.0
+depend: [Vault]
+commands:
+    Sign-Command:
+        description: Sign Command
+        aliases:
+            - sc
+            - signcommand
