@@ -38,12 +38,9 @@ public class SignPlacer implements Listener{
                 }
                 player.sendMessage("Not a Correct Sign.");
             }
-            
-        
-        
+
     }   
-    
-    
+        
 }
     
     
