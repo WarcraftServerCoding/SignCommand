@@ -11,6 +11,7 @@ import me.kalmanolah.extras.Tools;
 import me.kalmanolah.okb3.OKBSync;
 import me.kalmanolah.okb3.OKConfig;
 import me.kalmanolah.okb3.OKDatabase;
+import me.kalmanolah.okb3.OKLogger;
 
 public class JOOMLA implements OKBSync {
 
