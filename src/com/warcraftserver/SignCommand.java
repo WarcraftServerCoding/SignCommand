@@ -26,10 +26,12 @@ public class SignCommand extends JavaPlugin{
         public  Manager signmanager;
         private  Place place;
         private  AddCommand addcommand;
+        private refresh Refresh;
         File file = new File("plugins/SignCommand/Commands.txt");
         File dir = new File("plugins/SignCommand/");
         
         public void onEnable(){ 
+//            CREATES INSTANCES OF ALL CLASSES SO THAT WE CAN REFERENCE THEM LATER
             instance = this;
             cListener = new CommandListener();
             signdestroyer = new SignDestroyer(this);
@@ -39,13 +41,17 @@ public class SignCommand extends JavaPlugin{
             signmanager = new Manager(this);
             place = new Place();
             addcommand = new AddCommand(this);
+            Refresh = new refresh();
+//            DECLARING OUR LOGGER
             log = this.getLogger();
             log.info(String.format("[%s] Enabled Version %s", getDescription().getName(), getDescription().getVersion()));
+//            REGISTERING ALL EVENTS
             Bukkit.getServer().getPluginManager().registerEvents(signlistener, this);
             Bukkit.getServer().getPluginManager().registerEvents(signplacer, this);
             Bukkit.getServer().getPluginManager().registerEvents(signdestroyer, this);
 //          REGISTER COMMANDS
             getCommand("Sign-Command").setExecutor(cListener);
+//            LOADS CONFIGURATIONS FROM THE SIGNDATABASE.TXT
             signbase.initialize();
 //          CHECKS IF COMMANDS.TXT EXITS; IF IT DOESN'T, ITS CREATES ONE
             if(!file.exists()){
@@ -62,7 +68,10 @@ public class SignCommand extends JavaPlugin{
         public void onDisable(){ 
             log.info("SignCommand has been disabled");
         }
-        
+//        
+//        THESE METHOD RETURN CORRECT INSTANCES OF ALL CLASSES SO THAT WE CAN
+//        CORRECTLY ACCESS STORED VARIABLES FROM THEM WITHOUT GETTING ERRORS
+//        
         public static SignCommand getInstance(){
             return instance;
         }
@@ -83,6 +92,11 @@ public class SignCommand extends JavaPlugin{
             return addcommand;
         }
         
+        public refresh getRefresh(){
+            return Refresh;
+        }
+        
+//        METHOD TO CHECK PERMISSIONS VIA PEX
         public boolean permCheck(Player player, String permission){
 
             PermissionManager pex = PermissionsEx.getPermissionManager();

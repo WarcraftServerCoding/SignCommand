@@ -11,6 +11,7 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import com.warcraftserver.commands.CommandListener;
 import java.util.logging.Logger;
+import org.bukkit.event.EventPriority;
 
 public class SignPlacer implements Listener{
     public static Logger log = Logger.getLogger("MineCraft");
@@ -20,7 +21,7 @@ public class SignPlacer implements Listener{
         this.plugin = SignCommand.getInstance();
     }
     
-    @EventHandler()
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlaceChange(SignChangeEvent event){
         Player player = event.getPlayer();
             String[] lines = event.getLines();

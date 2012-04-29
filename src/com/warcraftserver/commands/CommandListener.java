@@ -33,21 +33,30 @@ public class CommandListener implements ExecutorInterface{
             if(sender instanceof Player){
                 player = (Player)sender;
             }
+//            checks players permission to execute the command
             if(!plugin.permCheck(player, "SignCommand.place")){
                 sender.sendMessage("§a[§bWarCraft§a] §fYou don't have permission for that.");
                 return true;
             }
+//            checks that paramaters were typed and not just /sc
             if(plugin.permCheck(player, "SignCommand.place") && cmd.length > 0){
-//          CHECKS TO MAKE SURE ARGUMENTS WERE ADDED. IF NO ARGUMENTS FOUND, IT TELLS YOU THE SYNTAX OF THE COMMAND
             if(cmd.length == 1){
+//          CHECKS TO MAKE SURE ARGUMENTS WERE ADDED. IF NO ARGUMENTS FOUND, IT TELLS YOU THE SYNTAX OF THE COMMAND                
                 if(cmd[0].equalsIgnoreCase("add")){
                     sender.sendMessage("§a[§bWarCraft§a] §fCorrect Usage is: /sc add [string]");
                     return true;
                 }
+//          CHECKS TO MAKE SURE ARGUMENTS WERE ADDED. IF NO ARGUMENTS FOUND, IT TELLS YOU THE SYNTAX OF THE COMMAND                
                 if(cmd[0].equalsIgnoreCase("command")){
                     sender.sendMessage("§a[§bWarCraft§a] §fCorrect Usage is: /sc command <arg> <arg> <arg> etc.");
                     return true;
                 }
+//              implements the refreshComSign method from Manager class via refresh class                
+                if(cmd[0].equalsIgnoreCase("refresh")){
+                    this.plugin.getManager().getRefresh().command(player);
+                    return true;
+                }
+//                currently unused feature
                 if(cmd[0].equalsIgnoreCase("place")){
                     this.plugin.getManager().getPlace().command(player);
                 }
@@ -69,6 +78,7 @@ public class CommandListener implements ExecutorInterface{
                 
 //            }
         }
+//            gives the player the syntax of all commands if they screwed up somehow
             invalidCommand(sender, commandString);
         return false;
     }
@@ -79,6 +89,7 @@ public class CommandListener implements ExecutorInterface{
         sender.sendMessage("§a    - §f/sc add [string]");
         sender.sendMessage("§a    - §f/sc command [arg] [arg] [arg]");
         sender.sendMessage("§a    - §f/sc cancel");
+        sender.sendMessage("§a    - §f/sc refresh");
     }
     
 }

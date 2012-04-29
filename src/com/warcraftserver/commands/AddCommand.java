@@ -69,6 +69,7 @@ public class AddCommand {
     }
     
     public void cancel(CommandSender sender){
+//        REMOVES THE PLAYER FROM ALL LISTS TO CANCEL COMMAND/ALIAS SAVING
         if(list.containsKey(sender)){
             list.remove(sender);
             sender.sendMessage("§a[§bWarCraft§a] §fCommand Cancelled.");
@@ -84,8 +85,13 @@ public class AddCommand {
 //     
      
     public void Write(String string, String command, Player player){
+//        CREATE OUR FILE
         File file = new File("plugins/SignCommand/Commands.txt");
         try{
+//            THIS PART CREATES A READER AND ADDS EACH LINE TO A STRINGBUILDER
+//            SO THAT WE CAN REWRITE IT TO THE FILE. IF THIS ISN'T DONE AND YOU 
+//            JUST WRITE THE NEW LINE IT WILL WRITE OVER THE WHOLE FILE AND LOSE
+//            ALL THE OTHER INFORMATIONS STORED
             BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder toWrite = new StringBuilder();
             String line = reader.readLine();
@@ -95,7 +101,7 @@ public class AddCommand {
             }
             reader.close();
             toWrite.append(string).append(":").append(command);
-            
+//            CREATES A FILEWRITER AND WRITES TO FILE
             FileWriter writer = new FileWriter(file);
             writer.write(toWrite.toString());
             writer.close();

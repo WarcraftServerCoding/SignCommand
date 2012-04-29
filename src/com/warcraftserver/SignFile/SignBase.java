@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 public class SignBase {
     
     Loader loader;
+//    CREATES OUR FILE AND DIRECTORY
     File dir = new File("plugins/SignCommand");
     File file = new File("plugins/SignCommand/SignDataBase.txt");
     Logger log = Logger.getLogger("Minecraft");
@@ -20,6 +21,7 @@ public class SignBase {
     
     
     public void initialize(){
+//        CREATES THE FILE AND DIRECTORY IF THEY DON'T EXIST
         try{
             if(!file.exists()){
                 dir.mkdirs();

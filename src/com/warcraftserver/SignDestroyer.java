@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventPriority;
 
 public class SignDestroyer implements Listener{
     
@@ -22,7 +23,7 @@ public class SignDestroyer implements Listener{
     }
     
     
-    @EventHandler()
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent event){
         Block block = event.getBlock();
         boolean isSign = false;
